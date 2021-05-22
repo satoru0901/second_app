@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Book {
   Book(DocumentSnapshot doc) {
-    documentID = doc.documentID;
+    documentID = doc.id;
     title = doc['title'];
   }
   String documentID;

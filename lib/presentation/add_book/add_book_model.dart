@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:second_app/domain/book.dart';
 
 class AddBookModel extends ChangeNotifier {
@@ -8,15 +8,15 @@ class AddBookModel extends ChangeNotifier {
     if (bookTitle.isEmpty) {
       throw ('タイトルを入力してください');
     }
-    Firestore.instance.collection('books').add(
+    FirebaseFirestore.instance.collection('books').add(
       {'title': bookTitle, 'createdAT': Timestamp.now()},
     );
   }
 
   Future updateBook(Book book) async {
     final document =
-        Firestore.instance.collection('books').document(book.documentID);
-    await document.updateData(
+        FirebaseFirestore.instance.collection('books').doc(book.documentID);
+    await document.update(
       {'title': bookTitle, 'updateAT': Timestamp.now()},
     );
   }

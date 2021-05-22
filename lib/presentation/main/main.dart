@@ -1,9 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:second_app/presentation/login/login_page.dart';
 import 'package:second_app/presentation/main/main_model.dart';
+import 'package:second_app/presentation/signup/signup_page.dart';
 import '../book_list/book_list_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -59,11 +64,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Text('あなたは  ' + model.kboyText + '  ですね？'),
                 RaisedButton(
-                    child: Text('次へ'),
+                    child: Text('新規登録'),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BookListPage()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    }),
+                RaisedButton(
+                    child: Text('ログイン'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     }),
               ],
